@@ -23,12 +23,11 @@ public class BlogService {
 
     public Blog createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
+        User user = userRepository1.findById(userId).get();
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setContent(content);
         blog.setPubDate(new Date());
-
-        User user = userRepository1.findById(userId).get();
         blog.setUser(user);
 
         List<Blog> blogList = user.getBlogList();

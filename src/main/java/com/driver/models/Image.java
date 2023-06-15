@@ -1,16 +1,10 @@
 package com.driver.models;
 
-
-import lombok.*;
-import lombok.experimental.FieldDefaults;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "imageInfo")
+@Table(name = "ImageInfo")
 public class Image{
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -23,37 +17,46 @@ public class Image{
     @JoinColumn
     private Blog blog;
 
-    public Image()
-    {
+    public Image() {
     }
-    public Image(int id, String description, String dimensions, Blog blog){
+
+    public Image(int id, String description, String dimensions, Blog blog) {
         this.id = id;
         this.description = description;
         this.dimensions = dimensions;
         this.blog = blog;
     }
+
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
-    public String getDescription(){
+
+    public String getDescription() {
         return description;
     }
-    public void setDescription(String description){
+
+    public void setDescription(String description) {
         this.description = description;
     }
-    public String getDimensions(){
+
+    public String getDimensions() {
         return dimensions;
     }
-    public void setDimensions(String dimensions){
+
+    public void setDimensions(String dimensions) {
         this.dimensions = dimensions;
     }
-    public Blog getBlog(){
+
+    public Blog getBlog() {
         return blog;
     }
-    public void setBlog(Blog blog){
+
+    public void setBlog(Blog blog) {
         this.blog = blog;
     }
 }

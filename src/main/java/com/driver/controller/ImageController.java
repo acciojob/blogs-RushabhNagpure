@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/images")
 public class ImageController {
 
+    @Autowired ImageService imageService;
+
     @PostMapping("/{blogId}/add-image")
     public ResponseEntity<String> addImage(@PathVariable int blogId, @RequestParam String description, @RequestParam String dimensions) {
         return new ResponseEntity<>("Added image successfully", HttpStatus.OK);

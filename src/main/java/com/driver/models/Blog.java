@@ -1,7 +1,5 @@
-package com.driver.models;
+package  com.driver.models;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -10,82 +8,84 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "blog")
+@Table(name = "BlogInfo")
 public class Blog {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-  private String title;
+    private int id;
+    private String title;
+    private String content;
 
-  private String content;
+    @CreationTimestamp
+    private Date pubDate;
 
-  @CreationTimestamp
-  private Date pubDate;
+    @ManyToOne
+    @JoinColumn
+    private User user;
 
-   @ManyToOne
-   @JoinColumn
-   private User user;
+    @OneToMany(mappedBy = "blog",cascade = CascadeType.ALL)
+    private List<Image> imageList = new ArrayList<>();
 
-   @OneToMany(mappedBy = "Image" , cascade =CascadeType.ALL)
-   private List<Image> imageList = new ArrayList<>();
+    public Blog(){
 
-   public Blog(){
+    }
+    public Blog(int id, String title, String content, Date pubDate,User user,List<Image> imageList) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.pubDate = pubDate;
+        this.user= user;
+        this.imageList = imageList;
 
-   }
-   public Blog(String title, String content, Date pubDate, User user){
-      this.title = title;
-      this.content = content;
-      this.pubDate = pubDate;
-      this.user = user;
-   }
+    }
 
-   public int getId() {
-      return id;
-   }
+    public int getId() {
+        return id;
+    }
 
-   public void setId(int id) {
-      this.id = id;
-   }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-   public String getTitle() {
-      return title;
-   }
+    public String getTitle() {
+        return title;
+    }
 
-   public void setTitle(String title) {
-      this.title = title;
-   }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-   public String getContent() {
-      return content;
-   }
+    public String getContent() {
+        return content;
+    }
 
-   public void setContent(String content) {
-      this.content = content;
-   }
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-   public Date getPubDate() {
-      return pubDate;
-   }
+    public Date getPubDate() {
+        return pubDate;
+    }
 
-   public void setPubDate(Date pubDate) {
-      this.pubDate = pubDate;
-   }
+    public void setPubDate(Date pubDate) {
+        this.pubDate = pubDate;
+    }
 
-   public User getUser() {
-      return user;
-   }
+    public User getUser() {
+        return user;
+    }
 
-   public void setUser(User user) {
-      this.user = user;
-   }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-   public List<Image> getImageList() {
-      return imageList;
-   }
+    public List<Image> getImageList() {
+        return imageList;
+    }
 
-   public void setImageList(List<Image> imageList) {
-      this.imageList = imageList;
-   }
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
+    }
 }
